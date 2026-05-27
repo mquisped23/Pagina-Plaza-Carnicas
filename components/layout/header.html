@@ -1,0 +1,184 @@
+<header id="navbar" class="fixed top-0 left-0 z-50 w-full transition-all duration-500">
+  <div id="navbar-inner" class="mx-auto w-full bg-transparent transition-all duration-500">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-20 lg:h-28 items-center justify-between gap-4 lg:gap-6">
+
+        <a href="index.html" class="flex shrink-0 items-center gap-4 group" aria-label="Ir al inicio de Plaza Cárnicas">
+          <img src="assets/img/logo-sinfondo.png" alt="Logo Plaza Cárnicas"
+            class="h-12 sm:h-14 lg:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+        </a>
+
+        <div class="hidden flex-1 items-center justify-center lg:flex">
+          <div class="flex w-full flex-col items-center">
+
+            <div class="flex w-full items-center justify-center">
+
+              <div class="h-px flex-1 bg-gradient-to-r from-transparent to-brand-gold/50"></div>
+
+              <div class="relative z-10 shrink-0 px-6">
+                <img src="assets/img/cerdito-sinfondo.png" alt="Decoración Plaza Cárnicas"
+                  class="h-12 lg:h-14 w-auto object-contain brightness-110">
+              </div>
+
+              <div class="h-px flex-1 bg-gradient-to-l from-transparent to-brand-gold/50"></div>
+
+            </div>
+
+            <nav class="mt-4 flex items-center gap-8" aria-label="Navegación principal">
+
+              <div class="group flex flex-col items-center gap-1">
+                <a href="index.html" data-nav="index"
+                  class="nav-link text-xs font-bold uppercase tracking-widest text-white transition-colors group-hover:text-brand-gold">
+                  Inicio
+                </a>
+                <span
+                  class="h-1.5 w-1.5 rounded-full bg-brand-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </div>
+
+              <div class="group flex flex-col items-center gap-1">
+                <a href="productos.html" data-nav="productos"
+                  class="nav-link text-xs font-bold uppercase tracking-widest text-white/70 transition-colors group-hover:text-brand-gold">
+                  Productos
+                </a>
+                <span
+                  class="h-1.5 w-1.5 rounded-full bg-brand-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </div>
+
+              <div class="group flex flex-col items-center gap-1">
+                <a href="empresas.html" data-nav="empresas"
+                  class="nav-link text-xs font-bold uppercase tracking-widest text-white/70 transition-colors group-hover:text-brand-gold">
+                  Empresas
+                </a>
+                <span
+                  class="h-1.5 w-1.5 rounded-full bg-brand-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </div>
+
+              <div class="group flex flex-col items-center gap-1">
+                <a href="assets/pdf/catalogo-plaza-carnicas.pdf"
+                  class="nav-link text-xs font-bold uppercase tracking-widest text-white/70 transition-colors group-hover:text-brand-gold"
+                  download>
+                  Catálogo
+                </a>
+                <span
+                  class="h-1.5 w-1.5 rounded-full bg-brand-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </div>
+
+              <div class="group flex flex-col items-center gap-1">
+                <a href="nosotros.html" data-nav="nosotros"
+                  class="nav-link text-xs font-bold uppercase tracking-widest text-white/70 transition-colors group-hover:text-brand-gold">
+                  Nosotros
+                </a>
+                <span
+                  class="h-1.5 w-1.5 rounded-full bg-brand-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </div>
+
+              <div class="group flex flex-col items-center gap-1">
+                <a href="contacto.html" data-nav="contacto"
+                  class="nav-link text-xs font-bold uppercase tracking-widest text-white/70 transition-colors group-hover:text-brand-gold">
+                  Contacto
+                </a>
+                <span
+                  class="h-1.5 w-1.5 rounded-full bg-brand-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </div>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="hidden shrink-0 lg:flex">
+          <a href="https://wa.me/51922010033?text=Hola%20Plaza%20C%C3%A1rnicas%2C%20quiero%20cotizar%20productos%20al%20por%20mayor."
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 rounded-xl border border-brand-gold bg-transparent px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-brand-gold transition-all duration-300 hover:bg-brand-gold hover:text-black hover:shadow-[0_0_25px_rgba(234,178,55,0.2)]">
+            <i class="fa-brands fa-whatsapp text-base"></i>
+            Cotizar ahora
+          </a>
+        </div>
+
+        <button id="menu-toggle"
+          class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-brand-gold/30 bg-black/20 text-brand-gold backdrop-blur-sm transition-all duration-300 hover:border-brand-gold hover:bg-brand-gold hover:text-black lg:hidden"
+          aria-label="Abrir menú" aria-expanded="false"
+          onclick="document.getElementById('mobile-menu').classList.remove('translate-x-full', 'opacity-0')">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div id="mobile-menu"
+  class="fixed inset-0 z-[100] translate-x-full bg-[#0a0a0a]/95 opacity-0 backdrop-blur-xl transition-all duration-500 lg:hidden"
+  aria-hidden="true">
+  <div class="flex min-h-dvh flex-col px-6 py-6">
+
+    <div class="flex items-center justify-between border-b border-brand-gold/20 pb-5">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="assets/img/logo-sinfondo.png" alt="Logo Plaza Cárnicas" class="h-10 sm:h-12 w-auto object-contain" />
+        <div>
+          <p class="font-heading text-lg sm:text-xl text-brand-gold tracking-wide">Plaza Cárnicas</p>
+          <p class="text-[10px] sm:text-xs text-white/60">Calidad al por mayor</p>
+        </div>
+      </a>
+
+      <button id="menu-close"
+        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 text-xl sm:text-2xl text-white/70 transition-all hover:border-brand-gold hover:text-brand-gold"
+        aria-label="Cerrar menú"
+        onclick="document.getElementById('mobile-menu').classList.add('translate-x-full', 'opacity-0')">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <nav class="flex flex-1 items-center justify-center">
+      <ul class="w-full space-y-5 sm:space-y-6 text-center">
+        <li>
+          <a href="index.html"
+            class="mobile-nav-link block font-heading text-2xl sm:text-3xl font-bold text-white transition-colors hover:text-brand-gold">
+            Inicio
+          </a>
+        </li>
+        <li>
+          <a href="productos.html"
+            class="mobile-nav-link block font-heading text-2xl sm:text-3xl font-bold text-white transition-colors hover:text-brand-gold">
+            Productos
+          </a>
+        </li>
+        <li>
+          <a href="empresas.html"
+            class="mobile-nav-link block font-heading text-2xl sm:text-3xl font-bold text-white transition-colors hover:text-brand-gold">
+            Empresas
+          </a>
+        </li>
+        <li>
+          <a href="assets/pdf/catalogo-plaza-carnicas.pdf" download
+            class="mobile-nav-link block font-heading text-2xl sm:text-3xl font-bold text-white transition-colors hover:text-brand-gold">
+            Catálogo
+          </a>
+        </li>
+        <li>
+          <a href="nosotros.html"
+            class="mobile-nav-link block font-heading text-2xl sm:text-3xl font-bold text-white transition-colors hover:text-brand-gold">
+            Nosotros
+          </a>
+        </li>
+        <li>
+          <a href="contacto.html"
+            class="mobile-nav-link block font-heading text-2xl sm:text-3xl font-bold text-white transition-colors hover:text-brand-gold">
+            Contacto
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="border-t border-brand-gold/20 pt-6 text-center">
+      <a href="https://wa.me/51922010033?text=Hola%20Plaza%20C%C3%A1rnicas%2C%20quiero%20cotizar%20productos%20al%20por%20mayor."
+        target="_blank" rel="noopener noreferrer"
+        class="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-brand-gold px-6 py-3.5 sm:py-4 text-xs sm:text-sm font-extrabold uppercase tracking-widest text-black transition-all">
+        <i class="fa-brands fa-whatsapp text-lg sm:text-xl"></i>
+        Cotizar por WhatsApp
+      </a>
+
+      <p class="mt-4 text-[10px] sm:text-xs text-white/40">
+        Atención directa para negocios y empresas
+      </p>
+    </div>
+  </div>
+</div>

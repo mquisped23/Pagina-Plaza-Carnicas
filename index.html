@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO básico -->
+  <title>Plaza Cárnicas | Proveedores de carnes al por mayor</title>
+  <meta name="description"
+    content="Plaza Cárnicas ofrece carnes, aves, embutidos y productos cárnicos al por mayor para restaurantes, tiendas, empresas y negocios." />
+  <meta name="keywords"
+    content="plaza cárnicas, carnes al por mayor, embutidos, pollo, carne de cerdo, proveedores de carne, restaurantes, empresas, Perú" />
+  <meta name="author" content="Plaza Cárnicas" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Plaza Cárnicas | Carnes al por mayor" />
+  <meta property="og:description"
+    content="Proveedores de carnes, aves y embutidos para negocios, restaurantes, tiendas y empresas." />
+  <meta property="og:image" content="assets/img/logo-plaza-carnicas.png" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/img/logo-plaza-carnicas.png" type="image/png" />
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Animaciones AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Tailwind CDN solo para desarrollo rápido -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Configuración temporal de Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              wine: "#5E0602",
+              wineDark: "#3B0301",
+              wineHover: "#630804",
+              gold: "#EAB237",
+              goldHover: "#F3C65A",
+              dark: "#101820",
+              black: "#070707",
+              cream: "#F8F5EF",
+              gray: "#6B7280",
+              white: "#FFFFFF"
+            }
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            heading: ["Playfair Display", "serif"]
+          },
+          backgroundImage: {
+            texture: "url('https://www.transparenttextures.com/patterns/dark-matter.png')"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Estilos globales temporales -->
+  <style>
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #070707;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #5E0602;
+      border-radius: 999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #720A05;
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+
+<body class="bg-brand-black text-brand-white font-sans antialiased selection:bg-brand-gold selection:text-brand-black">
+
+  <!-- Header reutilizable -->
+  <div data-component="components/layout/header.html"></div>
+
+  <!-- Contenido principal de cada página -->
+  <main id="main-content">
+
+
+    <!--HERO-->
+    <div data-component="components/sections/home/hero.html"></div>
+    <!--CONFIAN EN NOSTROS-->
+    <div data-component="components/sections/home/trust.html"></div>
+    <!--PREVIEW DE PRODUCTOS-->
+    <div data-component="components/sections/home/products-preview.html"></div>
+    <!--COMO TRABAJAMOS-->
+    <div data-component="components/sections/home/how-we-work.html"></div>
+    <!--CERTIFICADOS RESPALDO-->
+    <div data-component="components/sections/home/quality.html"></div>
+
+    <!--SOCIOSSS Y COLABORADORES-->
+
+    <div data-component="components/sections/home/partners.html"></div>
+
+    <!--CTA FINAL-->
+    <div data-component="components/sections/home/final-cta.html"></div>
+    <!-- 
+      Aquí irá el contenido propio de cada página.
+
+      Ejemplo:
+      - index.html: hero, productos destacados, empresas, certificados, CTA.
+      - productos.html: categorías, cards de productos, catálogo PDF.
+      - empresas.html: clientes, beneficios, sectores.
+      - noticias.html: artículos o novedades.
+      - contacto.html: datos de contacto y WhatsApp.
+    -->
+  </main>
+
+  <!-- Footer -->
+  <div data-component="components/layout/footer.html"></div>
+
+  <!-- WhatsApp flotante -->
+  <div data-component="components/ui/whatsapp-button.html"></div>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- JS de componentes -->
+  <script src="js/components.js"></script>
+
+  <script src="js/partners.js"></script>
+
+  <!-- JS principal -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

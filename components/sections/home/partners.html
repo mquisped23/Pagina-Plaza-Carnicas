@@ -1,0 +1,77 @@
+<section
+  id="socios"
+  class="relative overflow-hidden bg-brand-cream py-16 sm:py-24 lg:py-28 text-brand-black"
+>
+  <style>
+    @keyframes partnersMoveLeft {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes partnersMoveRight {
+      from { transform: translateX(-50%); }
+      to { transform: translateX(0); }
+    }
+
+    .partners-track-left {
+      /* Ajuste de velocidad para que sea suave y legible */
+      animation: partnersMoveLeft 40s linear infinite; 
+    }
+
+    .partners-track-right {
+      animation: partnersMoveRight 45s linear infinite;
+    }
+
+    .partners-marquee:hover .partners-track-left,
+    .partners-marquee:hover .partners-track-right {
+      animation-play-state: paused;
+    }
+  </style>
+
+  <div class="pointer-events-none absolute inset-0 opacity-[0.45]">
+    <div class="absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_10%_10%,rgba(234,178,55,0.22),transparent_28%),radial-gradient(circle_at_90%_85%,rgba(94,6,2,0.12),transparent_30%)]"></div>
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-wine/20 to-transparent"></div>
+  </div>
+
+  <div class="relative z-10">
+    <div class="mx-auto max-w-7xl px-5 text-center sm:px-6 lg:px-8" data-aos="fade-up">
+      <span class="mb-4 inline-flex items-center gap-2.5 rounded-full border border-brand-wine/15 bg-white px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-extrabold uppercase tracking-[0.25em] text-brand-wine shadow-sm">
+        <span class="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-brand-gold shadow-[0_0_8px_rgba(234,178,55,0.6)]"></span>
+        Red comercial
+      </span>
+
+      <h2 class="font-heading text-4xl font-bold leading-[1.1] tracking-tight text-brand-wine sm:text-5xl lg:text-6xl">
+        Socios y colaboradores
+      </h2>
+
+      <p class="mx-auto mt-4 sm:mt-6 max-w-2xl text-sm leading-relaxed text-brand-gray sm:text-lg">
+        Marcas, empresas y aliados que forman parte de nuestro ecosistema comercial.
+      </p>
+    </div>
+
+    <!-- Contenedor del Marquee -->
+    <div class="partners-marquee relative mt-12 sm:mt-16 overflow-hidden">
+      <!-- Máscaras de degradado lateral (Fade effect) -->
+      <div class="pointer-events-none absolute left-0 top-0 z-20 h-full w-16 bg-gradient-to-r from-brand-cream to-transparent sm:w-32 lg:w-40"></div>
+      <div class="pointer-events-none absolute right-0 top-0 z-20 h-full w-16 bg-gradient-to-l from-brand-cream to-transparent sm:w-32 lg:w-40"></div>
+
+      <div class="mx-auto mb-5 sm:mb-8 h-px max-w-6xl bg-gradient-to-r from-transparent via-brand-wine/20 to-transparent"></div>
+
+      <!-- Fila 1 -->
+      <div
+        id="partners-row-one"
+        class="partners-track-left flex w-max gap-4 sm:gap-5 px-4 sm:px-5"
+        aria-label="Primera fila de socios y colaboradores"
+      ></div>
+
+      <!-- Fila 2 -->
+      <div
+        id="partners-row-two"
+        class="partners-track-right mt-4 sm:mt-6 flex w-max gap-4 sm:gap-5 px-4 sm:px-5"
+        aria-label="Segunda fila de socios y colaboradores"
+      ></div>
+
+      <div class="mx-auto mt-6 sm:mt-10 h-px max-w-6xl bg-gradient-to-r from-transparent via-brand-wine/20 to-transparent"></div>
+    </div>
+  </div>
+</section>
