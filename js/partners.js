@@ -9,7 +9,7 @@ const partners = [
   { name: "El Catalán", logo: "assets/img/partners/embutidos-el-catalan.jpg", cardBg: "#FFFFFF" },
   { name: "Zimmerman", logo: "assets/img/partners/embutidos-zimmerman.jpg", cardBg: "#FFFFFF" },
   { name: "Encasur", logo: "assets/img/partners/encasur.jpg", cardBg: "#FFFFFF" },
-  { name: "Gulligan", logo: "assets/img/partners/hamburguesas-gulligan.jpg", cardBg: "#FFFFFF" },
+  { name: "Gulligan", logo: "assets/img/partners/hamburguesas-guillian.jpg", cardBg: "#FFFFFF" },
   { name: "Labet", logo: "assets/img/partners/labet.jpg", cardBg: "#FFFFFF" },
   { name: "La Charcutería de Lima", logo: "assets/img/partners/la-charcuteria-lima.jpg", cardBg: "#FFFFFF" },
   { name: "Lrox Importaciones", logo: "assets/img/partners/lrox.jpg", cardBg: "#000b21" },
