@@ -1,0 +1,24 @@
+{
+  "name": "pagina-web",
+  "version": "1.0.0",
+  "description": "Proyecto web para **Plaza Cárnicas**, empresa proveedora mayorista de carnes, aves, embutidos y productos cárnicos para restaurantes, tiendas, fábricas, empresas y negocios que compran al por mayor.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mquisped23/Pagina-Plaza-Carnicas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mquisped23/Pagina-Plaza-Carnicas/issues"
+  },
+  "homepage": "https://github.com/mquisped23/Pagina-Plaza-Carnicas#readme",
+  "devDependencies": {
+    "tailwindcss": "3.4.1"
+  }
+}
