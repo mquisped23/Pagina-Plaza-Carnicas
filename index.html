@@ -5,25 +5,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO básico -->
+  <!-- SEO Básico -->
   <title>Plaza Cárnicas | Proveedores de carnes al por mayor</title>
   <meta name="description"
-    content="Plaza Cárnicas ofrece carnes, aves, embutidos y productos cárnicos al por mayor para restaurantes, tiendas, empresas y negocios." />
+    content="Plaza Cárnicas ofrece carnes, aves, embutidos y productos cárnicos al por mayor para restaurantes, tiendas, empresas y negocios en Lima, Perú." />
   <meta name="keywords"
     content="plaza cárnicas, carnes al por mayor, embutidos, pollo, carne de cerdo, proveedores de carne, restaurantes, empresas, Perú" />
   <meta name="author" content="Plaza Cárnicas" />
+  <meta name="robots" content="index, follow" />
 
-  <!-- Open Graph -->
+  <!-- Open Graph / Facebook -->
   <meta property="og:title" content="Plaza Cárnicas | Carnes al por mayor" />
   <meta property="og:description"
     content="Proveedores de carnes, aves y embutidos para negocios, restaurantes, tiendas y empresas." />
-  <meta property="og:image" content="assets/img/logo-plaza-carnicas.png" />
+  <meta property="og:image" content="https://plazacarnicas.com/assets/img/logo-plaza-carnicas.png" />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://plazacarnicas.com/" />
+  <link rel="canonical" href="https://plazacarnicas.com/" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Plaza Cárnicas | Carnes al por mayor" />
+  <meta name="twitter:description" content="Proveedores de carnes, aves y embutidos para negocios, restaurantes, tiendas y empresas." />
+  <meta name="twitter:image" content="https://plazacarnicas.com/assets/img/logo-plaza-carnicas.png" />
 
   <!-- Favicon -->
   <link rel="icon" href="assets/img/logo-plaza-carnicas.png" type="image/png" />
 
-  <!-- Fuentes -->
+  <!-- Fuentes y Optimización de Carga -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -31,12 +40,57 @@
     rel="stylesheet" />
 
   <!-- Iconos -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <!-- Animaciones AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
   <link rel="stylesheet" href="dist/output.css" />
+
+  <!-- Datos Estructurados JSON-LD (Schema.org) para Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WholesaleStore",
+    "name": "Plaza Cárnicas",
+    "image": "https://plazacarnicas.com/assets/img/logo-plaza-carnicas.png",
+    "@id": "https://plazacarnicas.com/#store",
+    "url": "https://plazacarnicas.com/",
+    "telephone": "+51922010033",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Los Eucaliptos 278",
+      "addressLocality": "San Juan de Lurigancho",
+      "addressRegion": "Lima",
+      "postalCode": "15096",
+      "addressCountry": "PE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -11.9961633,
+      "longitude": -77.0142851
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    "sameAs": [
+      "https://www.facebook.com/people/Plaza-Carnicas/61559967376298/",
+      "https://www.instagram.com/plazacarnicas",
+      "https://www.tiktok.com/@plazacarnicas_pe"
+    ]
+  }
+  </script>
 
   <!-- Estilos globales temporales -->
   <style>

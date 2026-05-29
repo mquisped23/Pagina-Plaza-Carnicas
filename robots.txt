@@ -1,0 +1,6 @@
+# robots.txt para Plaza Cárnicas
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://plazacarnicas.com/sitemap.xml
