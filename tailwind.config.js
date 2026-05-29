@@ -9,9 +9,9 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          wine: "#5E0602",
+          wine: "#600804",
           wineDark: "#3B0301",
-          wineHover: "#630804",
+          wineHover: "#720A05",
           gold: "#EAB237",
           goldHover: "#F3C65A",
           dark: "#101820",
