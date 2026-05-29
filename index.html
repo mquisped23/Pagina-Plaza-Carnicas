@@ -19,6 +19,8 @@
     content="Proveedores de carnes, aves y embutidos para negocios, restaurantes, tiendas y empresas." />
   <meta property="og:image" content="assets/img/logo-plaza-carnicas.png" />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://plazacarnicas.com/" />
+  <link rel="canonical" href="https://plazacarnicas.com/" />
 
   <!-- Favicon -->
   <link rel="icon" href="assets/img/logo-plaza-carnicas.png" type="image/png" />
@@ -31,6 +33,7 @@
     rel="stylesheet" />
 
   <!-- Iconos -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <!-- Animaciones AOS -->
@@ -38,42 +41,10 @@
 
   <link rel="stylesheet" href="dist/output.css" />
 
-  <!-- Estilos globales temporales -->
-  <style>
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #070707;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #5E0602;
-      border-radius: 999px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #720A05;
-    }
-
-    .nav-link {
-      position: relative;
-    }
-
-
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-  </style>
+  <!-- Estilos custom movidos a src/input.css -->
 </head>
 
-<body class="bg-brand-black text-brand-white font-sans antialiased selection:bg-brand-gold selection:text-brand-black">
+<body class="bg-brand-black text-brand-white font-sans antialiased">
 
   <!-- Header reutilizable -->
   <div data-component="components/layout/header.html"></div>
@@ -90,8 +61,7 @@
     <div data-component="components/sections/home/products-preview.html"></div>
     <!--COMO TRABAJAMOS-->
     <div data-component="components/sections/home/how-we-work.html"></div>
-    <!--CERTIFICADOS RESPALDO-->
-    <div data-component="components/sections/home/quality.html"></div>
+    <!-- Certificados AIP ahora integrados en la sección Trust -->
 
     <!--SOCIOSSS Y COLABORADORES-->
 

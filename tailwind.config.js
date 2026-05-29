@@ -26,7 +26,7 @@ module.exports = {
         heading: ["Playfair Display", "serif"]
       },
       backgroundImage: {
-        texture: "url('https://www.transparenttextures.com/patterns/dark-matter.png')"
+        // Texture now handled via .bg-noise class in input.css (self-hosted SVG)
       }
     }
   },

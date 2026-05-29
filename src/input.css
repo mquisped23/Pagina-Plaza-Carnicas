@@ -1,3 +1,128 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ===========================
+   Plaza Cárnicas — Custom Styles
+   =========================== */
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070707;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5E0602;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #720A05;
+}
+
+/* --- No scrollbar utility --- */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* --- Subtle noise texture (self-hosted, no external dependency) --- */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* --- Section transitions (smooth color blending between sections) --- */
+.section-fade-top {
+  position: relative;
+}
+
+.section-fade-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--fade-from, transparent), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --- Reduced motion support --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* --- Bento grid for trust section --- */
+@layer components {
+  .bento-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .bento-grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(140px, auto);
+      gap: 1.5rem;
+    }
+  }
+}
+
+/* --- Timeline connector for how-we-work --- */
+.timeline-line {
+  position: absolute;
+  background: linear-gradient(to bottom, #EAB237, #5E0602);
+  width: 2px;
+  top: 0;
+  bottom: 0;
+  left: 1.25rem;
+  z-index: 0;
+}
+
+@media (min-width: 640px) {
+  .timeline-line {
+    width: auto;
+    height: 2px;
+    top: 2rem;
+    bottom: auto;
+    left: 10%;
+    right: 10%;
+    background: linear-gradient(to right, transparent, #EAB237, #5E0602, transparent);
+  }
+}
+
+/* --- Selection highlight --- */
+::selection {
+  background-color: #EAB237;
+  color: #070707;
+}

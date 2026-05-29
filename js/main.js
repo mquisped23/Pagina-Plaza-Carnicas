@@ -1,25 +1,44 @@
+// ─── Prefers Reduced Motion ──────────────────────────────────────────
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// ─── Debounce Utility ────────────────────────────────────────────────
+function debounce(fn, delay = 200) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
+}
+
+// ─── Boot ────────────────────────────────────────────────────────────
 document.addEventListener("componentsLoaded", () => {
   initAnimations();
   initHeader();
   initHeroSlider();
-  initTrustCarousel();
-  initProductsCarousel();
+  initCarousel("products-track", "products-dots");
+  initCarousel("trust-track", "trust-dots");
+  initBenefitsCarousel();
 });
 
+// ─── AOS Animations ─────────────────────────────────────────────────
 function initAnimations() {
-  if (typeof AOS !== "undefined") {
-    AOS.init({
-      once: true,
-      offset: 60,
-      duration: 800,
-      easing: "ease-out-cubic"
-    });
+  if (typeof AOS === "undefined") return;
+
+  if (prefersReducedMotion) {
+    // Disable all AOS animations — just reveal elements instantly
+    AOS.init({ disable: true });
+    return;
   }
+
+  AOS.init({
+    once: true,
+    offset: 60,
+    duration: 800,
+    easing: "ease-out-cubic"
+  });
 }
 
-
-
-
+// ─── Header ─────────────────────────────────────────────────────────
 function initHeader() {
   const navbar = document.getElementById("navbar");
   const navbarInner = document.getElementById("navbar-inner");
@@ -92,35 +111,32 @@ function initHeader() {
   setActiveNavLink();
 }
 
-
-//funcion para cambiar el fondo del hero 
+// ─── Hero Background Slider ────────────────────────────────────────
 function initHeroSlider() {
   const slides = document.querySelectorAll(".hero-slide");
-  if (slides.length === 0) return; // Si no hay slides (ej. en otra página), no hace nada
+  if (slides.length === 0) return;
+
+  // Skip auto-slide if user prefers reduced motion
+  if (prefersReducedMotion) return;
 
   let currentSlide = 0;
-  const slideInterval = 5000; // Cambia cada 5 segundos (5000ms)
+  const slideInterval = 5000;
 
   setInterval(() => {
-    // Quita la opacidad (y la clase active por si acaso) a la imagen actual
     slides[currentSlide].classList.remove("opacity-65", "active");
     slides[currentSlide].classList.add("opacity-0");
 
-    // Pasa a la siguiente imagen (vuelve a 0 si es la última)
     currentSlide = (currentSlide + 1) % slides.length;
 
-    // Muestra la nueva imagen
     slides[currentSlide].classList.remove("opacity-0");
     slides[currentSlide].classList.add("opacity-65", "active");
   }, slideInterval);
 }
 
-//Carrusel para products preview
-
-
-function initProductsCarousel() {
-  const track = document.getElementById("products-track");
-  const dots = document.querySelectorAll("#products-dots button");
+// ─── Unified Carousel (Products, Trust, etc.) ──────────────────────
+function initCarousel(trackId, dotsId) {
+  const track = document.getElementById(trackId);
+  const dots = document.querySelectorAll("#" + dotsId + " button");
 
   if (!track || dots.length === 0) return;
 
@@ -128,7 +144,6 @@ function initProductsCarousel() {
   const cardCount = dots.length;
   let intervalId;
 
-  // Actualiza visualmente los puntos (Uso de color vino transparente para inactivos)
   const updateDots = (index) => {
     dots.forEach((dot, i) => {
       if (i === index) {
@@ -142,34 +157,32 @@ function initProductsCarousel() {
   };
 
   const scrollToCard = (index) => {
-    if (window.innerWidth >= 640) return; // Se desactiva en tablet/desktop
-    const cardWidth = track.offsetWidth * 0.85; // Ajuste porque ocupan el 85%
+    if (window.innerWidth >= 640) return;
+    const cardWidth = track.offsetWidth * 0.85;
     track.scrollTo({
       left: index * cardWidth,
-      behavior: "smooth"
+      behavior: prefersReducedMotion ? "auto" : "smooth"
     });
     updateDots(index);
   };
 
   const startAutoScroll = () => {
-    if (window.innerWidth >= 640) return;
+    if (window.innerWidth >= 640 || prefersReducedMotion) return;
     intervalId = setInterval(() => {
       currentIndex = (currentIndex + 1) % cardCount;
       scrollToCard(currentIndex);
-    }, 4000); // 4 segundos de pausa para dar tiempo a leer
+    }, 4000);
   };
 
   const stopAutoScroll = () => {
     if (intervalId) clearInterval(intervalId);
   };
 
-  // Detecta el swipe manual del usuario
+  // Detect manual swipe
   track.addEventListener("scroll", () => {
     if (window.innerWidth >= 640) return;
     const scrollLeft = track.scrollLeft;
     const cardWidth = track.offsetWidth * 0.85;
-
-    // Calcula la tarjeta actual visible
     const newIndex = Math.round(scrollLeft / cardWidth);
 
     if (newIndex !== currentIndex && newIndex >= 0 && newIndex < cardCount) {
@@ -178,7 +191,7 @@ function initProductsCarousel() {
     }
   });
 
-  // Evento clic en los puntos
+  // Dot click events
   dots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
       stopAutoScroll();
@@ -188,82 +201,63 @@ function initProductsCarousel() {
     });
   });
 
-  // Manejo al rotar la pantalla
-  window.addEventListener("resize", () => {
+  // Debounced resize handler
+  window.addEventListener("resize", debounce(() => {
     if (window.innerWidth >= 640) {
       stopAutoScroll();
-      track.scrollTo({ left: 0 }); // Restaura el grid
+      track.scrollTo({ left: 0 });
     } else {
       stopAutoScroll();
       startAutoScroll();
     }
-  });
+  }, 250));
 
-  // Arranque
+  // Initial state
   updateDots(0);
   startAutoScroll();
 }
 
-// Doble seguridad por el timing
-document.addEventListener("DOMContentLoaded", initProductsCarousel);
-
-
-
-///////////////////////////////////
-
-function initTrustCarousel() {
-  const track = document.getElementById("trust-track");
-  const dots = document.querySelectorAll("#trust-dots button");
+// ─── Benefits Carousel (Hero section, mobile only) ─────────────────
+function initBenefitsCarousel() {
+  const track = document.getElementById("benefits-track");
+  const dots = document.querySelectorAll("#benefits-dots button");
 
   if (!track || dots.length === 0) return;
 
   let currentIndex = 0;
   const cardCount = dots.length;
-  let intervalId;
 
-  // Actualiza visualmente los puntos (Uso de color vino transparente para inactivos)
   const updateDots = (index) => {
     dots.forEach((dot, i) => {
       if (i === index) {
-        dot.classList.remove("bg-brand-wine/20", "w-2");
+        dot.classList.remove("bg-white/30", "w-2");
         dot.classList.add("bg-brand-gold", "w-4");
       } else {
-        dot.classList.add("bg-brand-wine/20", "w-2");
+        dot.classList.add("bg-white/30", "w-2");
         dot.classList.remove("bg-brand-gold", "w-4");
       }
     });
   };
 
   const scrollToCard = (index) => {
-    if (window.innerWidth >= 640) return; // Se desactiva en tablet/desktop
-    const cardWidth = track.offsetWidth * 0.85; // Ajuste porque ocupan el 85%
-    track.scrollTo({
-      left: index * cardWidth,
-      behavior: "smooth"
+    if (window.innerWidth >= 640) return;
+    const cards = track.children;
+    if (!cards[index]) return;
+    cards[index].scrollIntoView({
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+      block: "nearest",
+      inline: "start"
     });
     updateDots(index);
   };
 
-  const startAutoScroll = () => {
-    if (window.innerWidth >= 640) return;
-    intervalId = setInterval(() => {
-      currentIndex = (currentIndex + 1) % cardCount;
-      scrollToCard(currentIndex);
-    }, 4000); // 4 segundos de pausa para dar tiempo a leer
-  };
-
-  const stopAutoScroll = () => {
-    if (intervalId) clearInterval(intervalId);
-  };
-
-  // Detecta el swipe manual del usuario
+  // Detect manual scroll/swipe
   track.addEventListener("scroll", () => {
     if (window.innerWidth >= 640) return;
-    const scrollLeft = track.scrollLeft;
-    const cardWidth = track.offsetWidth * 0.85;
-
-    // Calcula la tarjeta actual visible
-    const newIndex = Math.round(scrollLeft / cardWidth);
+    const cards = track.children;
+    if (!cards.length) return;
+    const cardWidth = cards[0].offsetWidth;
+    const newIndex = Math.round(track.scrollLeft / cardWidth);
 
     if (newIndex !== currentIndex && newIndex >= 0 && newIndex < cardCount) {
       currentIndex = newIndex;
@@ -271,53 +265,40 @@ function initTrustCarousel() {
     }
   });
 
-  // Evento clic en los puntos
+  // Dot click events
   dots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
-      stopAutoScroll();
       currentIndex = index;
       scrollToCard(currentIndex);
-      startAutoScroll();
     });
   });
 
-  // Manejo al rotar la pantalla
-  window.addEventListener("resize", () => {
+  // Debounced resize — reset on desktop
+  window.addEventListener("resize", debounce(() => {
     if (window.innerWidth >= 640) {
-      stopAutoScroll();
-      track.scrollTo({ left: 0 }); // Restaura el grid
-    } else {
-      stopAutoScroll();
-      startAutoScroll();
+      track.scrollTo({ left: 0 });
     }
-  });
+  }, 250));
 
-  // Arranque
+  // Initial state
   updateDots(0);
-  startAutoScroll();
 }
 
-// Doble seguridad por el timing
-document.addEventListener("DOMContentLoaded", initTrustCarousel);
-
+// ─── Active Nav Link ────────────────────────────────────────────────
 function setActiveNavLink() {
-  // Obtiene la página actual o asigna "index.html" si se encuentra en la raíz del servidor
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   const navLinks = document.querySelectorAll("[data-nav]");
 
   navLinks.forEach((link) => {
     const navName = link.dataset.nav;
 
-    // Verifica si coincide con la página actual o si maneja la raíz/index de forma indistinta
     if (
       currentPage.includes(navName) ||
       ((currentPage === "index.html" || currentPage === "") && navName === "index")
     ) {
-      // Modifica las clases del texto del enlace activo
       link.classList.add("active", "text-brand-gold");
       link.classList.remove("text-white/70", "text-white/90");
 
-      // Selecciona el span (punto indicador) que está inmediatamente después del enlace
       const dot = link.nextElementSibling;
       if (dot && dot.tagName === "SPAN") {
         dot.classList.remove("opacity-0");

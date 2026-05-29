@@ -2,9 +2,9 @@
 const partners = [
   { name: "Agrícola Ariztía", logo: "assets/img/partners/Agricola-Ariztia.png", cardBg: "#FFFFFF" },
   { name: "Agrosuper", logo: "assets/img/partners/agrosuper.png", cardBg: "#FFFFFF" },
-  { name: "AIP", logo: "assets/img/partners/aip.jpg", cardBg: "#FFFFFF" },
+  { name: "AIP", logo: "assets/img/partners/AIP.jpg", cardBg: "#FFFFFF" },
   { name: "Barker", logo: "assets/img/partners/barker.jpg", cardBg: "#ffcd02" },
-  { name: "Cold Sure", logo: "assets/img/partners/cold-sure.png", cardBg: "#FFFFFF" },
+  { name: "Cold Sure", logo: "assets/img/partners/COLD-SURE.png", cardBg: "#FFFFFF" },
   { name: "Embutidos TK", logo: "assets/img/partners/embutidos-tk.jpg", cardBg: "#000000" },
   { name: "El Catalán", logo: "assets/img/partners/embutidos-el-catalan.jpg", cardBg: "#FFFFFF" },
   { name: "Zimmerman", logo: "assets/img/partners/embutidos-zimmerman.jpg", cardBg: "#FFFFFF" },
