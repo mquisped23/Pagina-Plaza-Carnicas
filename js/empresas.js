@@ -1,5 +1,5 @@
 const partnersB2B = [
-  {
+   {
     code: "PC-01",
     name: "Agrícola Ariztía",
     logo: "assets/img/partners/Agricola-Ariztia.png",
@@ -183,53 +183,29 @@ const partnersB2B = [
 
 let activeFilter = "all";
 let currentPage = 1;
-const itemsPerPage = 6; // Segmentar el catálogo en grupos de 6 socios
+const itemsPerPage = 4;
 
 document.addEventListener("componentsLoaded", () => {
   initB2BBrands();
 });
 
-// Inicializar la lógica del portafolio oscuro
 function initB2BBrands() {
   renderBrands(activeFilter);
-
-  // Vincular favoritos (toggle heart) dinámicamente delegando eventos en el grid
-  const gridContainer = document.getElementById("partners-grid");
-  if (gridContainer) {
-    gridContainer.addEventListener("click", (e) => {
-      const heartBtn = e.target.closest(".favorite-btn");
-      if (heartBtn) {
-        e.preventDefault();
-        const icon = heartBtn.querySelector("i");
-        if (icon) {
-          if (icon.classList.contains("fa-regular")) {
-            icon.classList.replace("fa-regular", "fa-solid");
-            icon.classList.add("text-[#EAB237]");
-          } else {
-            icon.classList.replace("fa-solid", "fa-regular");
-            icon.classList.remove("text-[#EAB237]");
-          }
-        }
-      }
-    });
-  }
 }
 
-// Filtrar mediante botones del sidebar
+// Filtro con clases dinámicas alineadas a tu paleta (bg-brand-wine)
 function filterB2BCategory(element, category) {
-  // Remover clases activas de todos los botones de filtro
   const filterButtons = document.querySelectorAll(".filter-option-btn");
   filterButtons.forEach(btn => {
-    btn.classList.remove("active", "bg-[#600804]", "text-white");
-    btn.classList.add("bg-transparent", "text-white/70", "border-white/10");
+    btn.classList.remove("active", "bg-brand-wine", "text-white", "border-brand-wine", "shadow-lg");
+    btn.classList.add("bg-white/[0.02]", "text-white/50", "border-white/5");
   });
 
-  // Activar botón actual
-  element.classList.add("active", "bg-[#600804]", "text-white");
-  element.classList.remove("bg-transparent", "text-white/70", "border-white/10");
+  element.classList.add("active", "bg-brand-wine", "text-white", "border-brand-wine", "shadow-lg");
+  element.classList.remove("bg-white/[0.02]", "text-white/50", "border-white/5");
 
   activeFilter = category;
-  currentPage = 1; // Resetear a la primera página al filtrar
+  currentPage = 1;
 
   const gridContainer = document.getElementById("partners-grid");
   if (gridContainer) {
@@ -241,19 +217,13 @@ function filterB2BCategory(element, category) {
   }
 }
 
-// Cambiar de página con animación suave
 function changePage(page) {
   currentPage = page;
-  
   const gridContainer = document.getElementById("partners-grid");
   if (gridContainer) {
     gridContainer.classList.add("opacity-0", "translate-y-4");
-    
-    // Scroll suave hasta el encabezado del directorio
     const dirHeader = document.getElementById("directorio-header-ref");
-    if (dirHeader) {
-      dirHeader.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (dirHeader) dirHeader.scrollIntoView({ behavior: "smooth", block: "start" });
 
     setTimeout(() => {
       renderBrands(activeFilter);
@@ -262,7 +232,6 @@ function changePage(page) {
   }
 }
 
-// Renderizar el grid y la paginación en tema oscuro
 function renderBrands(filter) {
   const gridContainer = document.getElementById("partners-grid");
   if (!gridContainer) return;
@@ -271,182 +240,106 @@ function renderBrands(filter) {
     ? partnersB2B 
     : partnersB2B.filter(brand => brand.category === filter);
 
-  const totalItems = filtered.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const totalPages = Math.ceil(filtered.length / itemsPerPage);
+  if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
 
-  // Asegurar que la página actual sea válida
-  if (currentPage > totalPages && totalPages > 0) {
-    currentPage = totalPages;
-  }
-
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const visibleBrands = filtered.slice(startIndex, endIndex);
+  const visibleBrands = filtered.slice((currentPage - 1) * itemsPerPage, (currentPage - 1) * itemsPerPage + itemsPerPage);
 
   if (visibleBrands.length === 0) {
     gridContainer.innerHTML = `
-      <div class="col-span-full py-20 text-center text-white/60 bg-[#0e0e0e] rounded-2xl border border-white/5 p-8 shadow-sm">
-        <i class="fa-solid fa-folder-open text-4xl text-[#EAB237]/50 mb-4"></i>
-        <h4 class="text-lg font-bold tracking-tight uppercase">No se encontraron socios</h4>
-        <p class="text-sm text-white/40 mt-1">Pronto agregaremos más marcas a esta especialidad.</p>
+      <div class="col-span-full py-16 text-center text-white/50 bg-brand-dark rounded-[2rem] border border-white/5 p-8 shadow-sm">
+        <i class="fa-solid fa-folder-open text-4xl text-brand-gold/40 mb-4"></i>
+        <h4 class="font-heading text-xl font-bold tracking-tight">No se encontraron socios</h4>
       </div>
     `;
     renderPaginationControls(0, 0);
     return;
   }
 
-  gridContainer.innerHTML = visibleBrands.map(brand => {
-    return `
-      <article 
-        class="bg-[#0e0e0e] rounded-2xl border border-white/5 shadow-[0_4px_25px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_50px_rgba(234,178,55,0.06)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col overflow-hidden group"
-        data-aos="fade-up"
-      >
-        <!-- Encabezado con código y favorito -->
-        <div class="px-6 pt-5 pb-2 flex items-center justify-between">
-          <span class="font-mono text-[10px] tracking-wider text-white/40 font-medium">
-            ${brand.code}
-          </span>
-          <button 
-            class="favorite-btn h-8 w-8 rounded-full border border-white/5 bg-[#121212] hover:bg-[#1c1c1c] text-white/40 hover:text-[#EAB237] flex items-center justify-center transition-all shadow-sm active:scale-90"
-            aria-label="Añadir a favoritos"
-          >
-            <i class="fa-regular fa-heart text-xs"></i>
-          </button>
-        </div>
+  // Tarjetas mucho más compactas y elegantes (paddings reducidos px-5 py-4)
+  gridContainer.innerHTML = visibleBrands.map(brand => `
+    <article class="bg-brand-dark rounded-[1.5rem] border border-white/5 shadow-xl hover:-translate-y-1 hover:border-brand-gold/30 transition-all duration-300 flex flex-col overflow-hidden group">
+      
+      <div class="px-5 pt-5 pb-2 flex items-center justify-between">
+        <span class="text-[9px] tracking-widest text-white/40 font-bold">${brand.code}</span>
+        <button class="favorite-btn h-7 w-7 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white/40 hover:text-brand-gold flex items-center justify-center transition-colors">
+          <i class="fa-regular fa-heart text-[10px]"></i>
+        </button>
+      </div>
 
-        <!-- Logotipo centrado en placa de porcelana circular -->
-        <div class="px-6 py-4 flex justify-center">
-          <div class="h-28 w-full bg-[#161616]/80 rounded-2xl border border-white/5 flex items-center justify-center p-4 transition-transform duration-300 group-hover:scale-[1.03]">
-            <div class="h-20 w-20 rounded-full bg-white flex items-center justify-center p-3.5 shadow-md">
-              <img 
-                src="${brand.logo}" 
-                alt="Logo ${brand.name}" 
-                class="max-h-12 max-w-full object-contain"
-                draggable="false"
-                loading="lazy"
-              />
-            </div>
+      <!-- Contenedor del logo más bajo para no quitar tanto espacio vertical -->
+      <div class="px-5 py-2 flex justify-center">
+        <div class="h-20 w-full bg-black/40 rounded-xl border border-white/5 flex items-center justify-center p-2">
+          <div class="h-14 w-14 shrink-0 rounded-full bg-white flex items-center justify-center p-2.5 shadow-lg transition-transform group-hover:scale-105">
+            <img src="${brand.logo}" alt="${brand.name}" class="w-full h-auto object-contain" loading="lazy" />
           </div>
         </div>
+      </div>
 
-        <!-- Especialidad en cinta dorada / texto -->
-        <div class="px-6 pt-2 pb-1">
-          <span class="font-mono text-[8px] font-extrabold uppercase tracking-widest text-[#EAB237] bg-[#EAB237]/10 px-2.5 py-1 rounded border border-[#EAB237]/20">
+      <div class="px-5 py-2 flex-1 flex flex-col justify-between">
+        <div>
+          <span class="text-[8px] font-extrabold uppercase tracking-widest text-brand-gold bg-brand-gold/10 px-2 py-1 rounded border border-brand-gold/20 inline-block mb-2">
             ${brand.specialtyBadge}
           </span>
+          <h4 class="font-heading font-bold text-lg text-white tracking-tight group-hover:text-brand-gold transition-colors leading-tight">
+            ${brand.name}
+          </h4>
+          <p class="mt-1.5 text-[12px] leading-relaxed text-white/60 line-clamp-2">
+            ${brand.description}
+          </p>
         </div>
 
-        <!-- Contenido principal y descripción -->
-        <div class="px-6 py-3 flex-1 flex flex-col justify-between">
-          <div>
-            <h4 class="font-sans font-extrabold text-base text-white tracking-tight uppercase group-hover:text-[#EAB237] transition-colors duration-300">
-              ${brand.name}
-            </h4>
-            <p class="mt-2 text-xs leading-relaxed text-white/70 line-clamp-3">
-              ${brand.description}
-            </p>
+        <div class="mt-4 space-y-1.5 border-t border-white/5 pt-3">
+          <div class="flex items-center gap-2 text-[10px] text-white/60">
+            <i class="fa-solid fa-circle-check text-brand-gold text-[9px] w-3 text-center"></i>
+            <span class="font-bold text-white/80">Certs:</span> <span class="truncate">${brand.certs}</span>
           </div>
-
-          <!-- Parámetros técnicos B2B con iconos dorados -->
-          <div class="mt-5 space-y-2 border-t border-white/5 pt-4">
-            <div class="flex items-center gap-2.5 text-[11px] text-white/60">
-              <i class="fa-solid fa-circle-check text-[#EAB237] text-[10px] w-3 text-center"></i>
-              <span class="font-semibold text-white/90">Certificaciones:</span>
-              <span class="font-mono text-[10px] text-white/80">${brand.certs}</span>
-            </div>
-            <div class="flex items-center gap-2.5 text-[11px] text-white/60">
-              <i class="fa-solid fa-map-location-dot text-[#EAB237] text-[10px] w-3 text-center"></i>
-              <span class="font-semibold text-white/90">Cobertura:</span>
-              <span class="text-white/80">${brand.cobertura}</span>
-            </div>
-            <div class="flex items-center gap-2.5 text-[11px] text-white/60">
-              <i class="fa-solid fa-tags text-[#EAB237] text-[10px] w-3 text-center"></i>
-              <span class="font-semibold text-white/90">Especialidad:</span>
-              <span class="text-white/80">${brand.specialty}</span>
-            </div>
+          <div class="flex items-center gap-2 text-[10px] text-white/60">
+            <i class="fa-solid fa-map-location-dot text-brand-gold text-[9px] w-3 text-center"></i>
+            <span class="font-bold text-white/80">Zonas:</span> <span class="truncate">${brand.cobertura}</span>
           </div>
         </div>
+      </div>
 
-        <!-- Separador fino e indicador de aprobación/ver perfil -->
-        <div class="px-6 py-4 bg-[#121212]/50 border-t border-white/5 flex items-center justify-between mt-auto">
-          <div class="flex items-center gap-1.5 font-mono text-[9px] text-[#EAB237] tracking-widest font-extrabold">
-            <span class="h-2 w-2 rounded-full bg-green-500"></span>
-            APROBADO
-          </div>
-          <a 
-            href="https://wa.me/51922010033?text=Hola%20Plaza%20C%C3%A1rnicas%2C%20solicito%20informaci%C3%B3n%20B2B%20sobre%20${encodeURIComponent(brand.name)}." 
-            target="_blank" rel="noopener noreferrer" 
-            class="text-[10px] font-bold uppercase tracking-wider text-[#EAB237] hover:text-white transition-colors flex items-center gap-1"
-          >
-            Ver perfil <i class="fa-solid fa-arrow-right text-[8px]"></i>
-          </a>
+      <div class="px-5 py-3.5 bg-black/20 border-t border-white/5 flex items-center justify-between mt-auto">
+        <div class="flex items-center gap-1.5 text-[8px] text-brand-gold tracking-widest font-extrabold uppercase">
+          <span class="h-1.5 w-1.5 rounded-full bg-green-500"></span> Homologado
         </div>
-      </article>
-    `;
-  }).join("");
+        <a href="https://wa.me/51922010033" target="_blank" class="text-[9px] font-bold uppercase tracking-wider text-brand-gold hover:text-white transition-colors flex items-center gap-1.5">
+          Cotizar <i class="fa-solid fa-arrow-right text-[8px]"></i>
+        </a>
+      </div>
+    </article>
+  `).join("");
 
   renderPaginationControls(totalPages, currentPage);
-
-  // Refrescar AOS si está disponible
-  if (typeof AOS !== "undefined") {
-    AOS.refresh();
-  }
 }
 
-// Renderizar el componente de paginación interactiva
-function renderPaginationControls(totalPages, activePage) {
-  const paginationContainer = document.getElementById("pagination-container");
-  if (!paginationContainer) return;
 
-  if (totalPages <= 1) {
-    paginationContainer.innerHTML = "";
+
+
+function renderPaginationControls(totalPages, activePage) {
+  const container = document.getElementById("pagination-container");
+  if (!container || totalPages <= 1) {
+    if(container) container.innerHTML = "";
     return;
   }
 
-  let html = `<div class="flex items-center justify-center gap-2 mt-12 w-full">`;
-
-  // Botón "Anterior"
+  let html = `<div class="flex items-center justify-center gap-2 w-full">`;
   const prevDisabled = activePage === 1;
-  html += `
-    <button 
-      onclick="${prevDisabled ? "" : `changePage(${activePage - 1})`}" 
-      class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-[#0e0e0e] hover:bg-[#141414] px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all shadow-md active:scale-95 ${prevDisabled ? "opacity-35 cursor-not-allowed" : "cursor-pointer"}"
-      ${prevDisabled ? "disabled" : ""}
-    >
-      <i class="fa-solid fa-arrow-left text-[10px]"></i> Anterior
-    </button>
-  `;
+  html += `<button onclick="${prevDisabled ? "" : `changePage(${activePage - 1})`}" class="flex items-center gap-2 rounded-xl border border-white/10 bg-brand-dark hover:bg-white/5 px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-white transition-all ${prevDisabled ? "opacity-30 cursor-not-allowed" : "cursor-pointer"}"><i class="fa-solid fa-arrow-left text-[10px]"></i></button>`;
 
-  // Números de páginas
   for (let i = 1; i <= totalPages; i++) {
-    const isCurrent = i === activePage;
-    html += `
-      <button 
-        onclick="changePage(${i})" 
-        class="h-10 w-10 rounded-xl flex items-center justify-center font-mono text-xs font-bold transition-all border ${isCurrent ? "bg-[#600804] border-[#EAB237] text-white shadow-md scale-105" : "bg-[#0e0e0e] border-white/10 text-white/70 hover:text-white hover:bg-[#141414]"} cursor-pointer active:scale-95"
-      >
-        ${i}
-      </button>
-    `;
+    const isCur = i === activePage;
+    html += `<button onclick="changePage(${i})" class="h-10 w-10 rounded-xl flex items-center justify-center text-xs font-bold transition-all border ${isCur ? "bg-brand-wine border-brand-wine text-white scale-105" : "bg-brand-dark border-white/10 text-white/50 hover:text-white"} cursor-pointer">${i}</button>`;
   }
 
-  // Botón "Siguiente"
   const nextDisabled = activePage === totalPages;
-  html += `
-    <button 
-      onclick="${nextDisabled ? "" : `changePage(${activePage + 1})`}" 
-      class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-[#0e0e0e] hover:bg-[#141414] px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all shadow-md active:scale-95 ${nextDisabled ? "opacity-35 cursor-not-allowed" : "cursor-pointer"}"
-      ${nextDisabled ? "disabled" : ""}
-    >
-      Siguiente <i class="fa-solid fa-arrow-right text-[10px]"></i>
-    </button>
-  `;
-
-  html += `</div>`;
-  paginationContainer.innerHTML = html;
+  html += `<button onclick="${nextDisabled ? "" : `changePage(${activePage + 1})`}" class="flex items-center gap-2 rounded-xl border border-white/10 bg-brand-dark hover:bg-white/5 px-4 py-2.5 text-[11px] font-bold uppercase tracking-widest text-white transition-all ${nextDisabled ? "opacity-30 cursor-not-allowed" : "cursor-pointer"}"><i class="fa-solid fa-arrow-right text-[10px]"></i></button></div>`;
+  
+  container.innerHTML = html;
 }
 
-// Registrar funciones globales
 window.filterB2BCategory = filterB2BCategory;
 window.changePage = changePage;
 window.renderBrands = renderBrands;
