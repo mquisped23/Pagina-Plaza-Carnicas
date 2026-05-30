@@ -22,6 +22,11 @@
     }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    /* Scrollbar amarillo para móvil */
+    .filter-scrollbar::-webkit-scrollbar { height: 3px; }
+    .filter-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 4px; margin: 0 20px; }
+    .filter-scrollbar::-webkit-scrollbar-thumb { background: #EAB237; border-radius: 4px; }
   </style>
 </head>
 
@@ -44,9 +49,7 @@
         <img src="assets/img/partners/fondo-empresas-mobile.png" alt="Fondo B2B" class="h-full w-full object-cover" />
       </picture>
       
-      <!-- Overlays oscuros para asegurar que el texto se lea -->
-      <div class="absolute inset-0 bg-brand-black/85 lg:bg-brand-black/65"></div>
-      <div class="absolute inset-0 dark-grid-mesh"></div>
+      
     </div>
 
     <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 w-full flex items-center">
@@ -83,7 +86,7 @@
           </div>
 
           <!-- Sellos Técnicos -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-4 mt-12 pt-8 border-t border-white/10 max-w-2xl">
+          <div class="hidden lg:grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-4 mt-12 pt-8 border-t border-white/10 max-w-2xl">
             <div class="flex items-center gap-3">
               <div class="h-10 w-10 shrink-0 rounded-full border border-brand-gold/20 bg-brand-gold/10 flex items-center justify-center text-brand-gold">
                 <i class="fa-solid fa-truck-ramp-box text-sm"></i>
@@ -109,7 +112,7 @@
         </div>
 
         <!-- Columna Derecha: Tarjeta Redimensionada y Círculo Perfecto -->
-        <div class="lg:col-span-5 flex justify-center pb-10 lg:pb-0" data-aos="fade-left" data-aos-delay="200">
+        <div class="hidden lg:flex lg:col-span-5 justify-center pb-10 lg:pb-0" data-aos="fade-left" data-aos-delay="200">
           <div class="bg-brand-dark rounded-[2rem] border border-white/5 shadow-2xl p-6 sm:p-8 flex flex-col gap-5 w-full max-w-md relative overflow-hidden group backdrop-blur-sm">
             
             <div class="flex items-center justify-between">
@@ -146,46 +149,46 @@
   </section>
 
  <!-- SECCIÓN 2: PORTAFOLIO B2B -->
-  <div id="directorio-header-ref"></div>
-  <section class="relative overflow-hidden bg-[#070707] pt-16 pb-24 z-10 border-t border-white/5 dark-grid-mesh">
+  <div id="directorio-header-ref" class="scroll-mt-28"></div>
+  <section class="relative overflow-hidden bg-brand-cream pt-16 pb-24 z-10 border-t border-brand-black/5">
     <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
       
       <!-- Cabecera del Directorio -->
-      <div class="mb-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 border-b border-white/5 pb-8" data-aos="fade-up">
+      <div class="mb-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 border-b border-brand-black/5 pb-8" data-aos="fade-up">
         <div class="max-w-xl">
           <span class="text-[10px] tracking-widest text-brand-gold uppercase font-extrabold block mb-2">Portafolio Operativo</span>
-          <h3 class="font-heading font-bold text-3xl sm:text-4xl text-white tracking-tight">Directorio B2B</h3>
+          <h3 class="font-heading font-bold text-3xl sm:text-4xl text-brand-black tracking-tight">Socios Claves</h3>
         </div>
 
-        <!-- Estadísticas ajustadas para móvil -->
-        <div class="grid grid-cols-3 gap-2 sm:gap-4 w-full lg:w-auto">
-          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-3 border border-white/5 bg-brand-dark px-3 sm:px-4 py-3 rounded-2xl">
+        <!-- Estadísticas ocultas en móvil, visibles desde tablet (sm) -->
+        <div class="hidden sm:grid sm:grid-cols-3 gap-4 w-full lg:w-auto">
+          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-3 border border-brand-black/5 bg-white px-3 sm:px-4 py-3 rounded-2xl shadow-sm">
             <div class="h-8 w-8 sm:h-10 sm:w-10 shrink-0 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold">
               <i class="fa-solid fa-handshake-angle text-xs sm:text-sm"></i>
             </div>
             <div class="text-center sm:text-left">
-              <p class="font-heading font-bold text-base sm:text-lg text-white leading-none">+25</p>
-              <p class="text-[8px] sm:text-[9px] text-white/50 font-extrabold uppercase tracking-widest mt-1">Marcas</p>
+              <p class="font-heading font-bold text-base sm:text-lg text-brand-black leading-none">+25</p>
+              <p class="text-[8px] sm:text-[9px] text-brand-black/50 font-extrabold uppercase tracking-widest mt-1">Marcas</p>
             </div>
           </div>
           
-          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-3 border border-white/5 bg-brand-dark px-3 sm:px-4 py-3 rounded-2xl">
+          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-3 border border-brand-black/5 bg-white px-3 sm:px-4 py-3 rounded-2xl shadow-sm">
             <div class="h-8 w-8 sm:h-10 sm:w-10 shrink-0 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold">
               <i class="fa-solid fa-earth-americas text-xs sm:text-sm"></i>
             </div>
             <div class="text-center sm:text-left">
-              <p class="font-heading font-bold text-base sm:text-lg text-white leading-none">90%</p>
-              <p class="text-[8px] sm:text-[9px] text-white/50 font-extrabold uppercase tracking-widest mt-1">Cobertura</p>
+              <p class="font-heading font-bold text-base sm:text-lg text-brand-black leading-none">90%</p>
+              <p class="text-[8px] sm:text-[9px] text-brand-black/50 font-extrabold uppercase tracking-widest mt-1">Cobertura</p>
             </div>
           </div>
           
-          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-3 border border-white/5 bg-brand-dark px-3 sm:px-4 py-3 rounded-2xl">
+          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-3 border border-brand-black/5 bg-white px-3 sm:px-4 py-3 rounded-2xl shadow-sm">
             <div class="h-8 w-8 sm:h-10 sm:w-10 shrink-0 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold">
               <i class="fa-solid fa-shield-halved text-xs sm:text-sm"></i>
             </div>
             <div class="text-center sm:text-left">
-              <p class="font-heading font-bold text-base sm:text-lg text-white leading-none">100%</p>
-              <p class="text-[8px] sm:text-[9px] text-white/50 font-extrabold uppercase tracking-widest mt-1">Calidad</p>
+              <p class="font-heading font-bold text-base sm:text-lg text-brand-black leading-none">100%</p>
+              <p class="text-[8px] sm:text-[9px] text-brand-black/50 font-extrabold uppercase tracking-widest mt-1">Calidad</p>
             </div>
           </div>
         </div>
@@ -195,42 +198,48 @@
       <div class="grid gap-8 lg:grid-cols-[260px_1fr] items-start">
         
         <!-- Sidebar de Filtros -->
-        <aside class="w-full shrink-0 lg:sticky top-28 bg-brand-dark border border-white/5 rounded-[2rem] p-5 sm:p-6 shadow-xl z-30" data-aos="fade-right">
-          <div class="flex items-center justify-between border-b border-white/5 pb-4 mb-4 sm:mb-5">
+        <aside class="w-full min-w-0 shrink-0 lg:sticky top-28 bg-white border border-brand-black/5 rounded-[1.5rem] p-5 sm:p-6 shadow-xl z-30" data-aos="fade-right">
+          <div class="flex items-center justify-between border-b border-brand-black/5 pb-4 mb-4 sm:mb-5">
             <span class="text-[10px] tracking-[0.2em] text-brand-gold uppercase font-extrabold">Filtrar Categorías</span>
             <i class="fa-solid fa-sliders text-brand-gold text-sm"></i>
           </div>
 
-          <div class="flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible no-scrollbar gap-2 lg:gap-2 pb-2 lg:pb-0 -mx-5 px-5 lg:mx-0 lg:px-0">
+          <div class="flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible filter-scrollbar gap-2 lg:gap-2 pb-4 lg:pb-0 -mx-5 px-5 lg:mx-0 lg:px-0">
             <button onclick="filterB2BCategory(this, 'all')" class="filter-option-btn active snap-center shrink-0 w-auto lg:w-full text-left font-bold text-[11px] tracking-wider uppercase px-4 py-3.5 rounded-xl transition-all flex items-center gap-3 bg-brand-wine text-white border border-brand-wine shadow-lg">
               <i class="fa-solid fa-cubes text-sm w-5 text-center"></i>
               Todos
             </button>
             
-            <button onclick="filterB2BCategory(this, 'carnes')" class="filter-option-btn snap-center shrink-0 w-auto lg:w-full text-left font-bold text-[11px] tracking-wider uppercase px-4 py-3.5 rounded-xl border border-white/5 bg-white/[0.02] text-white/50 hover:bg-white/5 transition-all flex items-center gap-3">
+            <button onclick="filterB2BCategory(this, 'carnes')" class="filter-option-btn snap-center shrink-0 w-auto lg:w-full text-left font-bold text-[11px] tracking-wider uppercase px-4 py-3.5 rounded-xl border border-brand-black/5 bg-black/[0.02] text-brand-black/60 hover:bg-black/5 transition-all flex items-center gap-3">
               <i class="fa-solid fa-drumstick-bite text-sm w-5 text-center"></i>
               Carnes y aves
             </button>
             
-            <button onclick="filterB2BCategory(this, 'embutidos')" class="filter-option-btn snap-center shrink-0 w-auto lg:w-full text-left font-bold text-[11px] tracking-wider uppercase px-4 py-3.5 rounded-xl border border-white/5 bg-white/[0.02] text-white/50 hover:bg-white/5 transition-all flex items-center gap-3">
+            <button onclick="filterB2BCategory(this, 'embutidos')" class="filter-option-btn snap-center shrink-0 w-auto lg:w-full text-left font-bold text-[11px] tracking-wider uppercase px-4 py-3.5 rounded-xl border border-brand-black/5 bg-black/[0.02] text-brand-black/60 hover:bg-black/5 transition-all flex items-center gap-3">
               <i class="fa-solid fa-pepper-hot text-sm w-5 text-center"></i>
               Embutidos
             </button>
             
-            <button onclick="filterB2BCategory(this, 'logistica')" class="filter-option-btn snap-center shrink-0 w-auto lg:w-full text-left font-bold text-[11px] tracking-wider uppercase px-4 py-3.5 rounded-xl border border-white/5 bg-white/[0.02] text-white/50 hover:bg-white/5 transition-all flex items-center gap-3">
+            <button onclick="filterB2BCategory(this, 'logistica')" class="filter-option-btn snap-center shrink-0 w-auto lg:w-full text-left font-bold text-[11px] tracking-wider uppercase px-4 py-3.5 rounded-xl border border-brand-black/5 bg-black/[0.02] text-brand-black/60 hover:bg-black/5 transition-all flex items-center gap-3">
               <i class="fa-solid fa-snowflake text-sm w-5 text-center"></i>
               Logística
             </button>
             
-            <button onclick="filterB2BCategory(this, 'insumos')" class="filter-option-btn snap-center shrink-0 w-auto lg:w-full text-left font-bold text-[11px] tracking-wider uppercase px-4 py-3.5 rounded-xl border border-white/5 bg-white/[0.02] text-white/50 hover:bg-white/5 transition-all flex items-center gap-3">
+            <button onclick="filterB2BCategory(this, 'insumos')" class="filter-option-btn snap-center shrink-0 w-auto lg:w-full text-left font-bold text-[11px] tracking-wider uppercase px-4 py-3.5 rounded-xl border border-brand-black/5 bg-black/[0.02] text-brand-black/60 hover:bg-black/5 transition-all flex items-center gap-3">
               <i class="fa-solid fa-box-open text-sm w-5 text-center"></i>
               Insumos
             </button>
           </div>
+          
+          <!-- Indicador visual de deslizar (sólo en móvil) -->
+          <div class="lg:hidden flex items-center justify-center gap-2 mt-4 opacity-70">
+             <i class="fa-solid fa-left-right text-[10px] text-brand-gold animate-pulse"></i>
+             <span class="text-[9px] font-bold tracking-[0.2em] uppercase text-brand-gold">Deslizar filtros</span>
+          </div>
         </aside>
 
         <!-- Grid del Portafolio: Ajustado a 2 columnas para que 4 tarjetas se vean perfectas -->
-        <main class="w-full flex flex-col" data-aos="fade-left">
+        <main class="w-full min-w-0 flex flex-col" data-aos="fade-left">
           <div id="partners-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 transition-all duration-300">
             <!-- Renderizado dinámico -->
           </div>
